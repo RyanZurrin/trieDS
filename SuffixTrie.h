@@ -104,40 +104,4 @@ void SuffixTrie::print() {
     }
 }
 
-bool isGoogly(SuffixTrie& t, std::shared_ptr<suffixNode>& root, string& word, int i, int count) {
-    if (i == word.length()) {
-        return root->isTerminal && (count + 1) >= 2;
-    }
-    char ch = word[i];
-    if (root->children.count(ch) == 0) {
-        return false;
-    }
-    root = root->children[ch];
-    if (root->isTerminal) {
-        bool cntLeft = isGoogly(t, root, word, i + 1, count + 1);
-        if (cntLeft) {
-            return true;
-        }
-    }
-    return isGoogly(t, root, word, i + 1, count);
-}
-
-
-static vector<string>  googlyStrings_suf(vector<string>& input){
-    SuffixTrie t;
-    for (auto& word : input) {
-        t.insert(word);
-    }
-    vector<string> result;
-    for (auto& word : input) {
-        int cnt = 0;
-        std::shared_ptr<suffixNode> temp = t.getRoot();
-        if (isGoogly(t, temp, word, 0, cnt)) {
-            result.push_back(word);
-        }
-
-    }
-    return result;
-}
-
 #endif //TRIEDS_SUFFIXTRIE_H

@@ -1,3 +1,4 @@
+#pragma ide diagnostic ignored "misc-no-recursion"
 //
 // Created by Ryan.Zurrin001 on 1/8/2022.
 //
@@ -9,7 +10,7 @@ using namespace std;
 
 class trie_node{
 public:
-    char ch;
+    __attribute__((unused)) char ch;
     bool isTerminal;
     unordered_map<char,trie_node*> children;
     explicit trie_node(char ch){
@@ -61,7 +62,7 @@ bool isGoogly(Trie t,trie_node*root, string s,size_t i,int cnt){
 }
 
 
-vector<string> googlyStrings(vector<string> input) {
+vector<string> googlyStrings(const vector<string>& input) {
     // Write your code here.
     Trie t;
 
@@ -70,7 +71,7 @@ vector<string> googlyStrings(vector<string> input) {
     }
     vector<string> output = {};
     // for every word in the list of strings
-    //check if it can be formed using atleast 2 words from the trie
+    //check if it can be formed using at least 2 words from the trie
 
     for(const auto& s : input){
         //cnt how many words are repeated to form a given string

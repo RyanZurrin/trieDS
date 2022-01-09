@@ -14,14 +14,15 @@ public:
     std::shared_ptr<btNode> right; // 1
 };
 
-class BinaryTrie {
+class __attribute__((unused)) BinaryTrie {
     std::shared_ptr<btNode> root;
     int max_xor_helper(int val);
 
 public:
     BinaryTrie();
     void insert(int n);
-    int max_xor(vector<int> in, int len);
+
+    __attribute__((unused)) int max_xor(vector<int> in, int len);
     __attribute__((unused)) bool search(int val);
     __attribute__((unused)) void print();
 }; // _____________________end of class BinaryTrie_____________________
@@ -73,7 +74,7 @@ int BinaryTrie::max_xor_helper(int val) {
     return current_ans;
 }
 
-int BinaryTrie::max_xor(vector<int> in, int len) {
+__attribute__((unused)) int BinaryTrie::max_xor(vector<int> in, int len) {
     int ans = 0;
     for (int i = 0; i < len; i++) {
         int val = in[i];

@@ -6,6 +6,7 @@
 #define TRIEDS_PREFIXTRIE_H
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 #include <memory>
 
 using namespace std;
@@ -38,7 +39,8 @@ public:
     __attribute__((unused)) static void documentSearch(const std::string& document, std::vector<std::string>& words);
 
     __attribute__((unused)) bool startsWith(const std::string& prefix);
-    bool endsWith(const std::string& suffix);
+
+    __attribute__((unused)) bool endsWith(const std::string& suffix);
     __attribute__((unused)) void print();
 };
 
@@ -143,7 +145,7 @@ __attribute__((unused)) void PrefixTrie::print() {
     cout << endl;
 }
 
-bool PrefixTrie::endsWith(const string &suffix) {
+__attribute__((unused)) bool PrefixTrie::endsWith(const string &suffix) {
     trieNode *current = root.get();
     for (char c : suffix) {
         if (current->children.count (c) == 0) {
@@ -153,34 +155,5 @@ bool PrefixTrie::endsWith(const string &suffix) {
     }
     return current->isTerminal;
 }
-
-static vector<string>  googlyStrings_pre(vector<string> input) {
-    // a string is said to be googly if it is exactly made up of at least two
-    // instances of other strings in the input list of stings. For example, given the input
-    // {"abc","abcabc"} "abcabc is a googly string because it contains two instances of "abc".
-    // Given the input {"abc","abcd","ab"} "abcd" is not a googly string because it contains
-    // only one instance of "abc" and "d" is not in the input list of strings.
-    vector<string> output;
-    int instance_count = 0;
-    for (const auto &word : input) {
-        if (word.length() == 1) {
-            continue;
-        }
-        for (const auto &word2 : input) {
-            if (word == word2) {
-                continue;
-            }
-            if (word.find(word2) != string::npos && word != word2 && word.length() > word2.length()) {
-                instance_count++;
-            }
-        }
-        if (instance_count >= 2) {
-            output.push_back(word);
-        }
-        instance_count = 0;
-    }
-    return output;
-}
-
 
 #endif //TRIEDS_PREFIXTRIE_H
