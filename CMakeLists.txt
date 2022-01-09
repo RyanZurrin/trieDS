@@ -3,4 +3,4 @@ project(trieDS)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(trieDS main.cpp PrefixTrie.h SuffixTrie.h)
+add_executable(trieDS main.cpp PrefixTrie.h SuffixTrie.h BinaryTrie.h Trie.h)
